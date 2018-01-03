@@ -31,11 +31,11 @@ services:
       - "80:80"
     volumes:
       - /home/pi/mmdvm-dashboard:/var/www/html
-      - mmdvmhost:/conf:ro
-      - ysfgateway:/conf:ro
-      - /home/pi/MMDVM.ini:/conf/MMDVM.ini:ro
-      - log-mmdvm:/var/log/mmdvm:ro
-      - log-ysfgateway:/var/log/ysfgateway:ro
+      - mmdvmhost:/etc/config:ro
+      - ysfgateway:/etc/config:ro
+      - /home/pi/MMDVM.ini:/etc/config/MMDVM.ini:ro
+      - log-mmdvm:/etc/config:ro
+      - log-ysfgateway:/etc/config:ro
     restart: always
     
 volumes:
