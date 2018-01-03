@@ -1,0 +1,24 @@
+FROM alpine
+
+RUN apk add --update --no-cache \
+    cmake \
+    make \
+    git \
+    g++ \
+    ca-certificates \
+  && rm -rf /var/cache/apk/* \
+  && git clone https://github.com/g4klx/YSFClients.git
+
+WORKDIR /YSFClients/YSFGateway
+RUN make \
+&& cp YSFGateway /usr/local/bin
+
+RUN mkdir /var/log/ysfgateway
+
+VOLUME /YSFGateway
+VOLUME /var/log/ysfgateway
+
+WORKDIR /YSFClients/YSFGateway
+
+CMD ["YSFGateway", "/MMDVMHost/YSFGateway.ini"]
+
