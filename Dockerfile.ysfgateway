@@ -20,5 +20,5 @@ VOLUME /var/log/ysfgateway
 
 WORKDIR /YSFClients/YSFGateway
 
-CMD ["YSFGateway", "/MMDVMHost/YSFGateway.ini"]
+CMD ["YSFGateway", "/YSFClients/YSFGateway/YSFGateway.ini"]
 
