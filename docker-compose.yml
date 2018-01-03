@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  mmdvmhost:
+    image: f4hlv/mmdvmhost
+    container_name: mmdvmhost
+    restart: always
+    volumes:
+      - /home/pi/MMDVM.ini:/MMDVMHost/MMDVM.ini:ro
+      - /home/pi/RSSI.dat:/MMDVMHost/RSSI.dat:ro
+      - /home/pi/DMRIds.dat:/MMDVMHost/DMRIds.dat:ro
+      - log-mmdvm:/var/log/mmdvm
+      - mmdvmhost:/MMDVMHost
+    devices:
+      - /dev/ttyACM0:/dev/ttyACM0
+      
+  ysfgateway:
+    image: f4hlv/ysfgateway
+    container_name: ysfgateway
+    restart: always
+    volumes:
+      - /home/pi/YSFGateway.ini:/YSFClients/YSFGateway/YSFGateway.ini:ro
+      - log-ysfgateway:/var/log/ysfgateway
+      - ysfgateway:/YSFClients/YSFGateway
+      
+  mmdvm-dashboard:
+    image: f4hlv/mmdvm-dashboard
+    container_name: mmdvm-dashboard
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - /home/pi/mmdvm-dashboard:/var/www/html
+      - mmdvmhost:/conf:ro
+      - ysfgateway:/conf:ro
+      - /home/pi/MMDVM.ini:/conf/MMDVM.ini:ro
+      - log-mmdvm:/var/log/mmdvm:ro
+      - log-ysfgateway:/var/log/ysfgateway:ro
+    restart: always
+    
+volumes:
+  mmdvmhost:
+  ysfgateway:
+  log-mmdvm:
+  log-ysfgateway:
