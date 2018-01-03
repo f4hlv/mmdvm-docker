@@ -5,8 +5,7 @@ RUN apt-get update \
 && apt-get install --no-install-recommends -y php-common \
 && apt-get install --no-install-recommends -y php-cgi \
 && apt-get install --no-install-recommends -y php \
-&& apt-get install --no-install-recommends -y libterm-readline-gnu-perl 
-\
+&& apt-get install --no-install-recommends -y libterm-readline-gnu-perl \
 && apt-get install --no-install-recommends -y locales \
 && apt-get install --no-install-recommends -y locales-all \
 && apt-get install --no-install-recommends -y git \
