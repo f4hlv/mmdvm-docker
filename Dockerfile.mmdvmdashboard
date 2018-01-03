@@ -15,7 +15,6 @@ RUN apt-get update \
 
 RUN lighty-enable-mod fastcgi
 RUN lighty-enable-mod fastcgi-php
-RUN service lighttpd restart
 
 RUN git clone https://github.com/dg9vh/MMDVMHost-Dashboard.git
 RUN cp -R /MMDVMHost-Dashboard/* /var/www/html/
