@@ -46,8 +46,14 @@ services:
     # - /home/pi/DMRIds.dat:/etc/mmdvm/DMRIds.dat:ro
     # - /home/pi/YSFHosts.txt:/etc/YSFGateway/YSFHosts.txt:ro
     restart: always
-    
+    networks:
+      - webgateway
+
 volumes:
   mmdvmhost:
   ysfgateway:
   web:
+networks:
+  webgateway:
+    external:
+      name: webgateway
