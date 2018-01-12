@@ -27,3 +27,5 @@ $ cd mmdvm-docker
 ### Example ###
 $ docker-compose up -d
 ```
+
+This software is licenced under the GPL v2 and is intended for amateur and educational use only. Use of this software for commercial purposes is strictly forbidden.
