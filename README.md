@@ -25,8 +25,9 @@ $ pip3 install docker-compose
 ```console
 $ git clone https://github.com/f4hlv/mmdvm-docker.git
 $ cd mmdvm-docker
-
-### Example ###
+```
+Edit docker-compose and run
+```console
 $ docker-compose up -d
 ```
 ## Persistent data
