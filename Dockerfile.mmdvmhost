@@ -7,7 +7,7 @@ RUN apk add --update --no-cache \
     g++ \
     ca-certificates \
   && rm -rf /var/cache/apk/* \
-  && git clone https://github.com/g4klx/MMDVMHost.git \
+  && git clone https://github.com/g4klx/MMDVMHost.git
 
 WORKDIR /MMDVMHost
 RUN make
