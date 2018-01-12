@@ -10,7 +10,7 @@ RUN apk add --update --no-cache \
   && git clone https://github.com/g4klx/YSFClients.git
 
 WORKDIR /YSFClients/YSFGateway
-RUN make clean all
+RUN make
 
 RUN mkdir /var/log/ysfgateway
 
