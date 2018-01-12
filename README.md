@@ -1,6 +1,6 @@
 # mmdvm-docker (BETA image)
 
-![logo](http://www.gb7dd.co.uk/home-brew/mmdvm/mmdvm-logo-2/)
+![logo](https://i1.wp.com/www.gb7dd.co.uk/wp-content/uploads/2016/02/MMDVM-logo.jpg?w=900)
 
 # Install Docker
 ```console
