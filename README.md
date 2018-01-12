@@ -34,6 +34,7 @@ $ docker-compose up -d
 - `/MMDVMHost/MMDVM.ini:ro` Path to the MMDVM.ini File
 - `/MMDVMHost/RSSI.dat:ro` Path to the RSSI.dat File (Optional)
 - `/MMDVMHost/DMRIds.dat:ro` Path to the DMRIds.dat File (Optional)
+
 example (raspberry): /home/pi/MMDVM.ini:/MMDVMHost/MMDVM.ini:ro
 
 
