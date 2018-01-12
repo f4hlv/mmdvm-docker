@@ -4,12 +4,12 @@ services:
   mmdvmhost:
     image: f4hlv/mmdvmhost
     container_name: mmdvmhost
-    restart: always
+    restart: unless-stopped
     volumes:
       - /home/pi/MMDVM.ini:/MMDVMHost/MMDVM.ini:ro
       - /home/pi/RSSI.dat:/MMDVMHost/RSSI.dat:ro
       - /home/pi/DMRIds.dat:/MMDVMHost/DMRIds.dat:ro
-      - log-mmdvm:/var/log/mmdvm
+#      - log-mmdvm:/var/log/mmdvm
       - mmdvmhost:/MMDVMHost
     devices:
       - /dev/ttyACM0:/dev/ttyACM0
@@ -17,12 +17,14 @@ services:
   ysfgateway:
     image: f4hlv/ysfgateway
     container_name: ysfgateway
-    restart: always
+    restart: restart: unless-stopped
     volumes:
       - /home/pi/YSFGateway.ini:/YSFClients/YSFGateway/YSFGateway.ini:ro
-      - log-ysfgateway:/var/log/ysfgateway
       - ysfgateway:/YSFClients/YSFGateway
-      
+#      - logysfgateway:/var/log/YSFGateway
+     depends_on:
+      - mmdvmhost
+
   mmdvm-dashboard:
     image: f4hlv/mmdvm-dashboard
     container_name: mmdvm-dashboard
@@ -31,15 +33,15 @@ services:
       - "80:80"
     volumes:
       - web:/var/www/html
-      - mmdvmhost:/etc/config:ro
-      - ysfgateway:/etc/config:ro
-      - log-mmdvm:/etc/config/log-mmdvm:ro
-      - log-ysfgateway:/etc/config/log-ysfgateway:ro
+      - mmdvmhost:/etc/mmdvm:ro
+      - ysfgateway:/etc/YSFGateway:ro
+#      - log-mmdvm:/var/log/mmdvm:ro
+#      - log-ysfgateway:/var/log/YSFGateway:ro
     restart: always
     
 volumes:
   mmdvmhost:
   ysfgateway:
-  log-mmdvm:
-  log-ysfgateway:
+#  log-mmdvm:
+#  log-ysfgateway:
   web:
