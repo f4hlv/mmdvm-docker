@@ -19,7 +19,7 @@ $ apt-get install python3-pip
 $ pip3 install docker-compose
 ```
 
-*Run MMDVMHost, YSFGateway and MMDVM-Dashboard
+* Run MMDVMHost, YSFGateway and MMDVM-Dashboard
 ```console
 $ git clone https://github.com/f4hlv/mmdvm-docker.git
 $ cd mmdvm-docker
