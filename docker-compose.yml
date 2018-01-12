@@ -19,12 +19,12 @@ services:
     build: Dockerfile.ysfgateway
 #    image: f4hlv/ysfgateway
     container_name: ysfgateway
-    restart: restart: unless-stopped
+    restart: unless-stopped
     volumes:
       - /home/pi/YSFGateway.ini:/YSFClients/YSFGateway/YSFGateway.ini:ro
       - ysfgateway:/YSFClients/YSFGateway
 #      - logysfgateway:/var/log/YSFGateway
-     depends_on:
+    depends_on:
       - mmdvmhost
 
   mmdvm-dashboard:
