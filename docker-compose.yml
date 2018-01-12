@@ -12,7 +12,6 @@ services:
       - /home/pi/MMDVM.ini:/MMDVMHost/MMDVM.ini:ro
       - /home/pi/RSSI.dat:/MMDVMHost/RSSI.dat:ro
       - /home/pi/DMRIds.dat:/MMDVMHost/DMRIds.dat:ro
-#      - log-mmdvm:/var/log/mmdvm
       - mmdvmhost:/MMDVMHost
     devices:
       - /dev/ttyACM0:/dev/ttyACM0
@@ -21,13 +20,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.ysfgateway
-#    image: f4hlv/ysfgateway
     container_name: ysfgateway
     restart: unless-stopped
     volumes:
       - /home/pi/YSFGateway.ini:/YSFClients/YSFGateway/YSFGateway.ini:ro
       - ysfgateway:/YSFClients/YSFGateway
-#      - logysfgateway:/var/log/YSFGateway
     depends_on:
       - mmdvmhost
 
@@ -35,7 +32,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.mmdvmdashboard
-#    image: f4hlv/mmdvm-dashboard
     container_name: mmdvm-dashboard
     restart: always
     ports:
@@ -44,13 +40,9 @@ services:
       - web:/var/www/html
       - mmdvmhost:/etc/mmdvm:ro
       - ysfgateway:/etc/YSFGateway:ro
-#      - log-mmdvm:/var/log/mmdvm:ro
-#      - log-ysfgateway:/var/log/YSFGateway:ro
     restart: always
     
 volumes:
   mmdvmhost:
   ysfgateway:
-#  log-mmdvm:
-#  log-ysfgateway:
   web:
