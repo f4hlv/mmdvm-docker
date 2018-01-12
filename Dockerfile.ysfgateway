@@ -7,18 +7,20 @@ RUN apk add --update --no-cache \
     g++ \
     ca-certificates \
   && rm -rf /var/cache/apk/* \
-  && git clone https://github.com/g4klx/YSFClients.git
+  && git clone https://github.com/g4klx/YSFClients.git \
+  && git fetch --all \
+  && git reset --hard origin/master
 
 WORKDIR /YSFClients/YSFGateway
-RUN make \
-&& cp YSFGateway /usr/local/bin
+RUN make clean all
+# && cp YSFGateway /usr/local/bin
 
 RUN mkdir /var/log/ysfgateway
 
 VOLUME /YSFGateway
-VOLUME /var/log/ysfgateway
+# VOLUME /var/log/ysfgateway
 
 WORKDIR /YSFClients/YSFGateway
 
-CMD ["YSFGateway", "/YSFClients/YSFGateway/YSFGateway.ini"]
+CMD ["/YSFClients/YSFGateway/YSFGateway", "/YSFClients/YSFGateway/YSFGateway.ini"]
 

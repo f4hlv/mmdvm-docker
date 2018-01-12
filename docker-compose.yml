@@ -2,7 +2,8 @@ version: '3'
 
 services:
   mmdvmhost:
-    image: f4hlv/mmdvmhost
+    build: Dockerfile.mmdvmhost
+#    image: f4hlv/mmdvmhost
     container_name: mmdvmhost
     restart: unless-stopped
     volumes:
@@ -15,7 +16,8 @@ services:
       - /dev/ttyACM0:/dev/ttyACM0
       
   ysfgateway:
-    image: f4hlv/ysfgateway
+    build: Dockerfile.ysfgateway
+#    image: f4hlv/ysfgateway
     container_name: ysfgateway
     restart: restart: unless-stopped
     volumes:
@@ -26,7 +28,8 @@ services:
       - mmdvmhost
 
   mmdvm-dashboard:
-    image: f4hlv/mmdvm-dashboard
+    build: Dockerfile.mmdvmdashboard
+#    image: f4hlv/mmdvm-dashboard
     container_name: mmdvm-dashboard
     restart: always
     ports:
