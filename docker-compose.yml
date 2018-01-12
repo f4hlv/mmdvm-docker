@@ -41,6 +41,10 @@ services:
       - web:/var/www/html
       - mmdvmhost:/etc/mmdvm:ro
       - ysfgateway:/etc/YSFGateway:ro
+      - /home/pi/MMDVM.ini:/etc/mmdvm/MMDVM.ini:ro
+    # - /home/pi/RSSI.dat:/etc/mmdvm/RSSI.dat:ro
+    # - /home/pi/DMRIds.dat:/etc/mmdvm/DMRIds.dat:ro
+    # - /home/pi/YSFHosts.txt:/etc/YSFGateway/YSFHosts.txt:ro
     restart: always
     
 volumes:
