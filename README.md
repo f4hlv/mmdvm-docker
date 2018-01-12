@@ -29,5 +29,11 @@ $ cd mmdvm-docker
 ### Example ###
 $ docker-compose up -d
 ```
+## Persistent data
+- `/MMDVMHost/MMDVM.ini:ro` Path to the MMDVM.ini File
+- `/MMDVMHost/RSSI.dat:ro` Path to the RSSI.dat File (Optional)
+- `/MMDVMHost/DMRIds.dat:ro` Path to the DMRIds.dat File (Optional)
+example (raspberry): /home/pi/MMDVM.ini:/MMDVMHost/MMDVM.ini:ro
+
 
 This software is licenced under the GPL v2 and is intended for amateur and educational use only. Use of this software for commercial purposes is strictly forbidden.
