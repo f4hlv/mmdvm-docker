@@ -40,6 +40,8 @@ example for MMDVM.ini(raspberry): /home/pi/MMDVM.ini:/MMDVMHost/MMDVM.ini:ro
 
 # Dashboard
 Configure options and destination directories /etc/mmdvm and /etc/YSFGateway. Then delete the setup.php file
+## Port
+- `80:80` Port configuration. "Port host":80(container port)
 ## Remove setup.php
 ```console
 $ docker exec mmdvm-dashboard rm /var/www/html/setup.php
