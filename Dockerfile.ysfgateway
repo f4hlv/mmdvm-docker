@@ -7,7 +7,7 @@ RUN apk add --update --no-cache \
     g++ \
     ca-certificates \
   && rm -rf /var/cache/apk/* \
-  && git clone https://github.com/g4klx/YSFClients.git \
+  && git clone https://github.com/g4klx/YSFClients.git
 
 WORKDIR /YSFClients/YSFGateway
 RUN make clean all
