@@ -1,4 +1,4 @@
-# mmdvm-docker (BETA image)
+# MMDVM by G4KLX
 
 ![logo](https://i1.wp.com/www.gb7dd.co.uk/wp-content/uploads/2016/02/MMDVM-logo.jpg?w=900)
 
