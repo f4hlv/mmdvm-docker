@@ -8,18 +8,12 @@ RUN apk add --update --no-cache \
     ca-certificates \
   && rm -rf /var/cache/apk/* \
   && git clone https://github.com/g4klx/MMDVMHost.git \
-  && git fetch --all \
-  && git reset --hard origin/master
 
 WORKDIR /MMDVMHost
-RUN make clean all
-
-#RUN mkdir /var/log/mmdvmhost
+RUN make
 
 VOLUME /MMDVMHost
-#VOLUME /var/log/mmdvmhost
 
 WORKDIR /MMDVMHost
 
 CMD ["/MMDVMHost/MMDVMHost", "/MMDVMHost/MMDVM.ini"]
-
