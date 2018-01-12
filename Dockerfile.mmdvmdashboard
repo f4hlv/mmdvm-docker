@@ -1,4 +1,4 @@
-FROM debian
+FROM resin/raspberrypi3-debian
 
 RUN apt-get update \
 && apt-get install --no-install-recommends -y lighttpd \
