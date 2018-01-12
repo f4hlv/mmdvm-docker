@@ -2,7 +2,9 @@ version: '3'
 
 services:
   mmdvmhost:
-    build: Dockerfile.mmdvmhost
+    build:
+      context: .
+      dockerfile: Dockerfile.mmdvmhost
 #    image: f4hlv/mmdvmhost
     container_name: mmdvmhost
     restart: unless-stopped
@@ -16,7 +18,9 @@ services:
       - /dev/ttyACM0:/dev/ttyACM0
       
   ysfgateway:
-    build: Dockerfile.ysfgateway
+    build:
+      context: .
+      dockerfile: Dockerfile.ysfgateway
 #    image: f4hlv/ysfgateway
     container_name: ysfgateway
     restart: unless-stopped
@@ -28,7 +32,9 @@ services:
       - mmdvmhost
 
   mmdvm-dashboard:
-    build: Dockerfile.mmdvmdashboard
+    build:
+      context: .
+      dockerfile: Dockerfile.mmdvmdashboard
 #    image: f4hlv/mmdvm-dashboard
     container_name: mmdvm-dashboard
     restart: always
