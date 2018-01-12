@@ -26,7 +26,7 @@ $ pip3 install docker-compose
 $ git clone https://github.com/f4hlv/mmdvm-docker.git
 $ cd mmdvm-docker
 ```
-Edit docker-compose and run
+Edit docker-compose.yml and run
 ```console
 $ docker-compose up -d
 ```
