@@ -38,5 +38,13 @@ $ docker-compose up -d
 
 example for MMDVM.ini(raspberry): /home/pi/MMDVM.ini:/MMDVMHost/MMDVM.ini:ro
 
+# Dashboard
+Configure options and destination directories /etc/mmdvm and /etc/YSFGateway. Then delete the setup.php file
+## Remove setup.php
+```console
+$ docker exec mmdvm-dashboard rm /var/www/html/setup.php
+```
+
+
 
 This software is licenced under the GPL v2 and is intended for amateur and educational use only. Use of this software for commercial purposes is strictly forbidden.
