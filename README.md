@@ -30,7 +30,7 @@ Edit docker-compose and run
 ```console
 $ docker-compose up -d
 ```
-## Persistent data
+## Volume
 - `/MMDVMHost/MMDVM.ini:ro` Path to the MMDVM.ini File
 - `/MMDVMHost/RSSI.dat:ro` Path to the RSSI.dat File (Optional)
 - `/MMDVMHost/DMRIds.dat:ro` Path to the DMRIds.dat File (Optional)
