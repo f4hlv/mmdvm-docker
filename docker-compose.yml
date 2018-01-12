@@ -10,8 +10,8 @@ services:
     restart: unless-stopped
     volumes:
       - /home/pi/MMDVM.ini:/MMDVMHost/MMDVM.ini:ro
-      - /home/pi/RSSI.dat:/MMDVMHost/RSSI.dat:ro
-      - /home/pi/DMRIds.dat:/MMDVMHost/DMRIds.dat:ro
+    # - /home/pi/RSSI.dat:/MMDVMHost/RSSI.dat:ro
+    # - /home/pi/DMRIds.dat:/MMDVMHost/DMRIds.dat:ro
       - mmdvmhost:/MMDVMHost
     devices:
       - /dev/ttyACM0:/dev/ttyACM0
@@ -24,6 +24,7 @@ services:
     restart: unless-stopped
     volumes:
       - /home/pi/YSFGateway.ini:/YSFClients/YSFGateway/YSFGateway.ini:ro
+   #  - /home/pi/YSFHosts.txt:/YSFClients/YSFGateway/YSFHosts.txt:ro
       - ysfgateway:/YSFClients/YSFGateway
     depends_on:
       - mmdvmhost
