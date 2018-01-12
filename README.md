@@ -1,5 +1,7 @@
 # mmdvm-docker (BETA image)
 
+![logo](http://www.gb7dd.co.uk/home-brew/mmdvm/mmdvm-logo-2/)
+
 # Install Docker
 ```console
 $ curl -fsSL get.docker.com -o get-docker.sh
