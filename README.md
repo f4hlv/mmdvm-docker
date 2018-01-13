@@ -52,5 +52,66 @@ $ docker-compose build
 $ docker-compose up -d
 ```
 
+# docker-compose
+```yml
+version: '3'
+
+services:
+  mmdvmhost:
+    build:
+      context: .
+      dockerfile: Dockerfile.mmdvmhost
+    container_name: mmdvmhost
+    restart: unless-stopped
+    volumes:
+      - /home/pi/MMDVM.ini:/MMDVMHost/MMDVM.ini:ro
+    # - /home/pi/RSSI.dat:/MMDVMHost/RSSI.dat:ro
+    # - /home/pi/DMRIds.dat:/MMDVMHost/DMRIds.dat:ro
+      - mmdvmhost:/MMDVMHost
+    devices:
+      - /dev/ttyACM0:/dev/ttyACM0
+      
+  ysfgateway:
+    build:
+      context: .
+      dockerfile: Dockerfile.ysfgateway
+    container_name: ysfgateway
+    restart: unless-stopped
+    volumes:
+      - /home/pi/YSFGateway.ini:/YSFClients/YSFGateway/YSFGateway.ini:ro
+   #  - /home/pi/YSFHosts.txt:/YSFClients/YSFGateway/YSFHosts.txt:ro
+      - ysfgateway:/YSFClients/YSFGateway
+    depends_on:
+      - mmdvmhost
+
+  mmdvm-dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile.mmdvmdashboard
+    container_name: mmdvm-dashboard
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - web:/var/www/html
+      - mmdvmhost:/etc/mmdvm:ro
+      - ysfgateway:/etc/YSFGateway:ro
+      - /home/pi/MMDVM.ini:/etc/mmdvm/MMDVM.ini:ro
+    # - /home/pi/RSSI.dat:/etc/mmdvm/RSSI.dat:ro
+    # - /home/pi/DMRIds.dat:/etc/mmdvm/DMRIds.dat:ro
+    # - /home/pi/YSFHosts.txt:/etc/YSFGateway/YSFHosts.txt:ro
+    restart: always
+    networks:
+      - webgateway
+
+volumes:
+  mmdvmhost:
+  ysfgateway:
+  web:
+networks:
+  webgateway:
+    external:
+name: webgateway
+```
 
 This software is licenced under the GPL v2 and is intended for amateur and educational use only. Use of this software for commercial purposes is strictly forbidden.
