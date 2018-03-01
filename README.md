@@ -48,7 +48,7 @@ $ docker exec mmdvm-dashboard rm /var/www/html/setup.php
 ```
 # Update
 ```console
-$ docker-compose build
+$ docker-compose build --no-cache
 $ docker-compose up -d
 ```
 
