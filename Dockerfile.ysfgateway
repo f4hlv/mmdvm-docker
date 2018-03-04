@@ -14,7 +14,7 @@ RUN make
 
 RUN mkdir /var/log/ysfgateway
 
-VOLUME /YSFGateway
+VOLUME /YSFClients/YSFGateway
 
 WORKDIR /YSFClients/YSFGateway
 
