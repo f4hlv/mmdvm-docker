@@ -18,7 +18,7 @@ $ chmod +x /usr/local/bin/docker-compose
 * (Raspberry)
 ```console
 $ sudo apt-get -y install python-setuptools
-$ sudo easy_install pip  && sudo pip install docker-compose
+$ sudo easy_install pip && sudo pip install docker-compose
 ```
 
 # Run MMDVMHost, YSFGateway and MMDVM-Dashboard
