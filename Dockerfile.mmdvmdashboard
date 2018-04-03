@@ -1,30 +1,15 @@
-FROM debian
+FROM php:5.6-apache
 
-RUN apt-get update \
-&& apt-get install --no-install-recommends -y lighttpd \
-&& apt-get install --no-install-recommends -y php-common \
-&& apt-get install --no-install-recommends -y php-cgi \
-&& apt-get install --no-install-recommends -y php \
-&& apt-get install --no-install-recommends -y libterm-readline-gnu-perl \
-&& apt-get install --no-install-recommends -y locales \
-&& apt-get install --no-install-recommends -y locales-all \
-&& apt-get install --no-install-recommends -y git \
-&& apt-get install --no-install-recommends -y ca-certificates \
-&& rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y locales && apt-get install -y locales-all && apt-get clean
+RUN docker-php-ext-install gettext
 
-RUN lighty-enable-mod fastcgi
-RUN lighty-enable-mod fastcgi-php
-RUN service lighttpd restart
+RUN a2enmod rewrite && a2enmod headers
 
 RUN git clone https://github.com/dg9vh/MMDVMHost-Dashboard.git
 RUN cp -R /MMDVMHost-Dashboard/* /var/www/html/
 RUN chown -R www-data:www-data /var/www/html
 RUN chmod -R 775 /var/www/html
 
-RUN mkdir /etc/config
 EXPOSE 80
 VOLUME /var/www/html
-VOLUME /etc/config
 WORKDIR /var/www/html
-
-CMD ["lighttpd", "-D", "-f", "/etc/lighttpd/lighttpd.conf"]
