@@ -1,6 +1,8 @@
 FROM alpine
 
-RUN apk add --update --no-cache \
+RUN addgroup -g 1000 mmdvm \
+    && adduser -u 1000 -G mmdvm -s /bin/sh -D mmdvm \
+    && apk add --update --no-cache \
     cmake \
     make \
     git \
@@ -9,11 +11,14 @@ RUN apk add --update --no-cache \
   && rm -rf /var/cache/apk/* \
   && git clone https://github.com/g4klx/MMDVMHost.git
 
+RUN adduser mmdvm dialout
+
 WORKDIR /MMDVMHost
 RUN make
+RUN chown -R mmdvm.mmdvm /MMDVMHost
 
 VOLUME /MMDVMHost
-
 WORKDIR /MMDVMHost
+USER mmdvm
 
 CMD ["/MMDVMHost/MMDVMHost", "/MMDVMHost/MMDVM.ini"]
