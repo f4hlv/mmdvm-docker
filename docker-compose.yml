@@ -25,7 +25,6 @@ services:
     volumes:
       - /home/pi/YSFGateway.ini:/YSFClients/YSFGateway/YSFGateway.ini:ro
    #  - /home/pi/YSFHosts.txt:/YSFClients/YSFGateway/YSFHosts.txt:ro
-      - ysfgateway:/YSFClients/YSFGateway
     depends_on:
       - mmdvmhost
 
@@ -40,7 +39,6 @@ services:
     volumes:
       - web:/var/www/html
       - mmdvmhost:/etc/mmdvm:ro
-      - ysfgateway:/etc/YSFGateway:ro
       - /home/pi/MMDVM.ini:/etc/mmdvm/MMDVM.ini:ro
     # - /home/pi/RSSI.dat:/etc/mmdvm/RSSI.dat:ro
     # - /home/pi/DMRIds.dat:/etc/mmdvm/DMRIds.dat:ro
