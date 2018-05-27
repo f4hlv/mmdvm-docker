@@ -45,6 +45,7 @@ services:
     # - /home/pi/RSSI.dat:/etc/mmdvm/RSSI.dat:ro
     # - /home/pi/DMRIds.dat:/etc/mmdvm/DMRIds.dat:ro
     # - /home/pi/YSFHosts.txt:/etc/YSFGateway/YSFHosts.txt:ro
+    pid: host
     restart: always
     networks:
       - webgateway
