@@ -31,7 +31,22 @@ services:
       - mmdvmhost
     networks:
       mmdvm:
-        ipv4_address: 10.10.1.3  
+        ipv4_address: 10.10.1.3
+        
+  ysf2dmr:
+    build:
+      context: .
+      dockerfile: Dockerfile.ysf2dmr
+    container_name: ysf2dmr
+    volumes:
+      - /home/pi/YSF2DMR.ini:/YSF2DMR/YSF2DMR.ini:ro
+      - /home/pi/TGList-DMR.txt:/YSF2DMR/TGList-DMR.txt:ro
+    depends_on:
+      - ysfgateway
+    networks:
+      mmdvm:
+        ipv4_address: 10.10.1.30
+    restart: unless-stopped        
 
   mmdvm-dashboard:
     build:
