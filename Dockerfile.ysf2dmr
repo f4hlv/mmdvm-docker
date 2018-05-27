@@ -1,0 +1,22 @@
+FROM alpine
+
+RUN addgroup -g 1000 mmdvm \
+    && adduser -u 1000 -G mmdvm -s /bin/sh -D mmdvm \
+    && apk add --update --no-cache \
+    cmake \
+    make \
+    git \
+    g++ \
+    ca-certificates \
+  && rm -rf /var/cache/apk/* \
+  && git clone https://github.com/juribeparada/YSF2DMR.git
+
+RUN chown -R mmdvm:mmdvm /YSF2DMR
+WORKDIR /YSF2DMR
+RUN make
+
+VOLUME /YSF2DMR
+WORKDIR /YSF2DMR
+USER mmdvm
+
+CMD ["/YSF2DMR/YSF2DMR", "/YSF2DMR/YSF2DMR.ini"]
