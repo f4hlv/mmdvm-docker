@@ -37,7 +37,6 @@ services:
     ports:
       - "80:80"
     volumes:
-      - web:/var/www/html
       - mmdvmhost:/etc/mmdvm:ro
       - /home/pi/MMDVM.ini:/etc/mmdvm/MMDVM.ini:ro
     # - /home/pi/RSSI.dat:/etc/mmdvm/RSSI.dat:ro
@@ -50,8 +49,6 @@ services:
 
 volumes:
   mmdvmhost:
-  ysfgateway:
-  web:
 networks:
   webgateway:
     external:
