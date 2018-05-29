@@ -39,8 +39,8 @@ services:
       dockerfile: Dockerfile.ysf2dmr
     container_name: ysf2dmr
     volumes:
-      - /home/pi/YSF2DMR.ini:/YSF2DMR/YSF2DMR.ini:ro
-      - /home/pi/TGList-DMR.txt:/YSF2DMR/TGList-DMR.txt:ro
+      - /home/pi/YSF2DMR.ini:/MMDVM_CM/YSF2DMR/YSF2DMR.ini:ro
+      - /home/pi/TGList-DMR.txt:/MMDVM_CM/YSF2DMR/TGList-DMR.txt:ro
     depends_on:
       - ysfgateway
     networks:
