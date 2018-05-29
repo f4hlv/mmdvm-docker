@@ -9,14 +9,14 @@ RUN addgroup -g 1000 mmdvm \
     g++ \
     ca-certificates \
   && rm -rf /var/cache/apk/* \
-  && git clone https://github.com/juribeparada/YSF2DMR.git
+  && git clone https://github.com/juribeparada/MMDVM_CM.git
 
-RUN chown -R mmdvm:mmdvm /YSF2DMR
-WORKDIR /YSF2DMR
-RUN make
+WORKDIR /MMDVM_CM/YSF2DMR
+RUN make \
+ && chown -R mmdvm:mmdvm /MMDVM_CM/YSF2DMR
 
-VOLUME /YSF2DMR
-WORKDIR /YSF2DMR
+VOLUME /MMDVM_CM/YSF2DMR
+WORKDIR /MMDVM_CM/YSF2DMR
 USER mmdvm
 
-CMD ["/YSF2DMR/YSF2DMR", "/YSF2DMR/YSF2DMR.ini"]
+CMD ["/MMDVM_CM/YSF2DMR/YSF2DMR", "/MMDVM_CM/YSF2DMR/YSF2DMR.ini"]
