@@ -1,0 +1,21 @@
+FROM alpine
+
+RUN addgroup -g 1000 mmdvm \
+    && adduser -u 1000 -G mmdvm -s /bin/sh -D mmdvm \
+    && apk add --update --no-cache \
+    cmake \
+    make \
+    git \
+    g++ \
+    ca-certificates \
+  && rm -rf /var/cache/apk/*
+
+RUN git clone https://github.com/juribeparada/MMDVM_CM.git \
+    && cd /MMDVM_CM/YSF2NXDN && make \
+    && chown -R mmdvm:mmdvm /MMDVM_CM/YSF2NXDN
+
+VOLUME /MMDVM_CM/YSF2NXDN
+WORKDIR /MMDVM_CM/YSF2NXDN
+USER mmdvm
+
+CMD ["/MMDVM_CM/YSF2NXDN/YSF2NXDN", "/MMDVM_CM/YSF2NXDN/YSF2NXDN.ini"]
