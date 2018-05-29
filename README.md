@@ -63,14 +63,17 @@ services:
       context: .
       dockerfile: Dockerfile.mmdvmhost
     container_name: mmdvmhost
-    restart: unless-stopped
     volumes:
       - /home/pi/MMDVM.ini:/MMDVMHost/MMDVM.ini:ro
     # - /home/pi/RSSI.dat:/MMDVMHost/RSSI.dat:ro
     # - /home/pi/DMRIds.dat:/MMDVMHost/DMRIds.dat:ro
       - mmdvmhost:/MMDVMHost
+    networks:
+      mmdvm:
+        ipv4_address: 10.10.1.2      
     devices:
       - /dev/ttyACM0:/dev/ttyACM0
+    restart: unless-stopped
       
   ysfgateway:
     build:
@@ -81,9 +84,26 @@ services:
     volumes:
       - /home/pi/YSFGateway.ini:/YSFClients/YSFGateway/YSFGateway.ini:ro
    #  - /home/pi/YSFHosts.txt:/YSFClients/YSFGateway/YSFHosts.txt:ro
-      - ysfgateway:/YSFClients/YSFGateway
     depends_on:
       - mmdvmhost
+    networks:
+      mmdvm:
+        ipv4_address: 10.10.1.3
+        
+  ysf2dmr:
+    build:
+      context: .
+      dockerfile: Dockerfile.ysf2dmr
+    container_name: ysf2dmr
+    volumes:
+      - /home/pi/YSF2DMR.ini:/MMDVM_CM/YSF2DMR/YSF2DMR.ini:ro
+      - /home/pi/TGList-DMR.txt:/MMDVM_CM/YSF2DMR/TGList-DMR.txt:ro
+    depends_on:
+      - ysfgateway
+    networks:
+      mmdvm:
+        ipv4_address: 10.10.1.30
+    restart: unless-stopped        
 
   mmdvm-dashboard:
     build:
@@ -94,25 +114,28 @@ services:
     ports:
       - "80:80"
     volumes:
-      - web:/var/www/html
       - mmdvmhost:/etc/mmdvm:ro
-      - ysfgateway:/etc/YSFGateway:ro
       - /home/pi/MMDVM.ini:/etc/mmdvm/MMDVM.ini:ro
     # - /home/pi/RSSI.dat:/etc/mmdvm/RSSI.dat:ro
     # - /home/pi/DMRIds.dat:/etc/mmdvm/DMRIds.dat:ro
     # - /home/pi/YSFHosts.txt:/etc/YSFGateway/YSFHosts.txt:ro
+    pid: host
     restart: always
     networks:
       - webgateway
 
 volumes:
   mmdvmhost:
-  ysfgateway:
-  web:
 networks:
   webgateway:
     external:
-name: webgateway
+      name: webgateway
+  mmdvm:
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.10.1.0/24
+
 ```
 
 This software is licenced under the GPL v2 and is intended for amateur and educational use only. Use of this software for commercial purposes is strictly forbidden.
