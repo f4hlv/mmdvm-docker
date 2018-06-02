@@ -58,6 +58,7 @@ $ docker-compose up -d
 version: '3'
 
 services:
+#############################################################################################
   mmdvmhost:
     build:
       context: .
@@ -74,7 +75,7 @@ services:
     devices:
       - /dev/ttyACM0:/dev/ttyACM0
     restart: unless-stopped
-      
+#############################################################################################      
   ysfgateway:
     build:
       context: .
@@ -89,7 +90,7 @@ services:
     networks:
       mmdvm:
         ipv4_address: 10.10.1.3
-        
+#############################################################################################        
   ysf2dmr:
     build:
       context: .
@@ -104,7 +105,7 @@ services:
       mmdvm:
         ipv4_address: 10.10.1.30
     restart: unless-stopped        
-
+#############################################################################################
   mmdvm-dashboard:
     build:
       context: .
@@ -123,7 +124,7 @@ services:
     restart: always
     networks:
       - webgateway
-
+#############################################################################################
 volumes:
   mmdvmhost:
 networks:
