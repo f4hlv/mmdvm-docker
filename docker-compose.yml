@@ -39,7 +39,7 @@ services:
       dockerfile: Dockerfile.ysf2dmr
     container_name: ysf2dmr
     volumes:
-      - /home/pi/mmdvm-docker/config/mmdvm-docker/config/YSF2DMR.ini:/MMDVM_CM/YSF2DMR/YSF2DMR.ini:ro
+      - /home/pi/mmdvm-docker/config/YSF2DMR.ini:/MMDVM_CM/YSF2DMR/YSF2DMR.ini:ro
 #      - /home/pi/mmdvm-docker/config/TGList-DMR.txt:/MMDVM_CM/YSF2DMR/TGList-DMR.txt:ro
     depends_on:
       - ysfgateway
