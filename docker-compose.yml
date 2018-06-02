@@ -7,9 +7,9 @@ services:
       dockerfile: Dockerfile.mmdvmhost
     container_name: mmdvmhost
     volumes:
-      - /home/pi/MMDVM.ini:/MMDVMHost/MMDVM.ini:ro
-    # - /home/pi/RSSI.dat:/MMDVMHost/RSSI.dat:ro
-    # - /home/pi/DMRIds.dat:/MMDVMHost/DMRIds.dat:ro
+      - /home/pi/mmdvm-docker/config/MMDVM.ini:/MMDVMHost/MMDVM.ini:ro
+#      - /home/pi/mmdvm-docker/config/RSSI.dat:/MMDVMHost/RSSI.dat:ro
+#      - /home/pi/mmdvm-docker/config/DMRIds.dat:/MMDVMHost/DMRIds.dat:ro
       - mmdvmhost:/MMDVMHost
     networks:
       mmdvm:
@@ -25,8 +25,8 @@ services:
     container_name: ysfgateway
     restart: unless-stopped
     volumes:
-      - /home/pi/YSFGateway.ini:/YSFClients/YSFGateway/YSFGateway.ini:ro
-   #  - /home/pi/YSFHosts.txt:/YSFClients/YSFGateway/YSFHosts.txt:ro
+      - /home/pi/mmdvm-docker/config/YSFGateway.ini:/YSFClients/YSFGateway/YSFGateway.ini:ro
+#      - /home/pi/mmdvm-docker/config/YSFHosts.txt:/YSFClients/YSFGateway/YSFHosts.txt:ro
     depends_on:
       - mmdvmhost
     networks:
@@ -39,8 +39,8 @@ services:
       dockerfile: Dockerfile.ysf2dmr
     container_name: ysf2dmr
     volumes:
-      - /home/pi/YSF2DMR.ini:/MMDVM_CM/YSF2DMR/YSF2DMR.ini:ro
-      - /home/pi/TGList-DMR.txt:/MMDVM_CM/YSF2DMR/TGList-DMR.txt:ro
+      - /home/pi/mmdvm-docker/config/mmdvm-docker/config/YSF2DMR.ini:/MMDVM_CM/YSF2DMR/YSF2DMR.ini:ro
+#      - /home/pi/mmdvm-docker/config/TGList-DMR.txt:/MMDVM_CM/YSF2DMR/TGList-DMR.txt:ro
     depends_on:
       - ysfgateway
     networks:
@@ -58,7 +58,7 @@ services:
       - "80:80"
     volumes:
       - mmdvmhost:/etc/mmdvm:ro
-      - /home/pi/MMDVM.ini:/etc/mmdvm/MMDVM.ini:ro
+      - /home/pi/mmdvm-docker/config/MMDVM.ini:/etc/mmdvm/MMDVM.ini:ro
     # - /home/pi/RSSI.dat:/etc/mmdvm/RSSI.dat:ro
     # - /home/pi/DMRIds.dat:/etc/mmdvm/DMRIds.dat:ro
     # - /home/pi/YSFHosts.txt:/etc/YSFGateway/YSFHosts.txt:ro
