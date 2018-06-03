@@ -56,7 +56,6 @@ $ docker-compose up -d
 # docker-compose
 ```yml
 version: '3'
-
 services:
 #############################################################################################
   mmdvmhost:
@@ -65,9 +64,9 @@ services:
       dockerfile: Dockerfile.mmdvmhost
     container_name: mmdvmhost
     volumes:
-      - /home/pi/mmdvm-docker/config/MMDVM.ini:/MMDVMHost/MMDVM.ini:ro
-#      - /home/pi/mmdvm-docker/config/RSSI.dat:/MMDVMHost/RSSI.dat:ro
-#      - /home/pi/mmdvm-docker/config/DMRIds.dat:/MMDVMHost/DMRIds.dat:ro
+      - ./config/MMDVM.ini:/MMDVMHost/MMDVM.ini:ro
+#      - ./config/RSSI.dat:/MMDVMHost/RSSI.dat:ro
+#      - ./config/DMRIds.dat:/MMDVMHost/DMRIds.dat:ro
       - mmdvmhost:/MMDVMHost
     networks:
       mmdvm:
@@ -83,8 +82,8 @@ services:
     container_name: ysfgateway
     restart: unless-stopped
     volumes:
-      - /home/pi/mmdvm-docker/config/YSFGateway.ini:/YSFClients/YSFGateway/YSFGateway.ini:ro
-#      - /home/pi/mmdvm-docker/config/YSFHosts.txt:/YSFClients/YSFGateway/YSFHosts.txt:ro
+      - ./config/YSFGateway.ini:/YSFClients/YSFGateway/YSFGateway.ini:ro
+#      - ./config/YSFHosts.txt:/YSFClients/YSFGateway/YSFHosts.txt:ro
     depends_on:
       - mmdvmhost
     networks:
@@ -97,8 +96,8 @@ services:
       dockerfile: Dockerfile.ysf2dmr
     container_name: ysf2dmr
     volumes:
-      - /home/pi/mmdvm-docker/config/YSF2DMR.ini:/MMDVM_CM/YSF2DMR/YSF2DMR.ini:ro
-#      - /home/pi/mmdvm-docker/config/TGList-DMR.txt:/MMDVM_CM/YSF2DMR/TGList-DMR.txt:ro
+      - ./config/YSF2DMR.ini:/MMDVM_CM/YSF2DMR/YSF2DMR.ini:ro
+#      - ./config/TGList-DMR.txt:/MMDVM_CM/YSF2DMR/TGList-DMR.txt:ro
     depends_on:
       - ysfgateway
     networks:
@@ -116,10 +115,10 @@ services:
       - "80:80"
     volumes:
       - mmdvmhost:/etc/mmdvm:ro
-      - /home/pi/mmdvm-docker/config/MMDVM.ini:/etc/mmdvm/MMDVM.ini:ro
-    # - /home/pi/RSSI.dat:/etc/mmdvm/RSSI.dat:ro
-    # - /home/pi/DMRIds.dat:/etc/mmdvm/DMRIds.dat:ro
-    # - /home/pi/YSFHosts.txt:/etc/YSFGateway/YSFHosts.txt:ro
+      - ./config/MMDVM.ini:/etc/mmdvm/MMDVM.ini:ro
+    # - ./config/RSSI.dat:/etc/mmdvm/RSSI.dat:ro
+    # - ./config/DMRIds.dat:/etc/mmdvm/DMRIds.dat:ro
+    # - ./config/YSFHosts.txt:/etc/YSFGateway/YSFHosts.txt:ro
     pid: host
     restart: always
     networks:
@@ -136,8 +135,6 @@ networks:
       driver: default
       config:
         - subnet: 10.10.1.0/24
-
-
 ```
 
 This software is licenced under the GPL v2 and is intended for amateur and educational use only. Use of this software for commercial purposes is strictly forbidden.
