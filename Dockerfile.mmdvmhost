@@ -8,6 +8,7 @@ RUN addgroup -g 1000 mmdvm \
     git \
     g++ \
     ca-certificates \
+    linux-headers \
   && rm -rf /var/cache/apk/* \
   && git clone https://github.com/g4klx/MMDVMHost.git
 
