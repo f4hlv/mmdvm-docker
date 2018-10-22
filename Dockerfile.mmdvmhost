@@ -1,22 +1,21 @@
 FROM alpine
 
-RUN addgroup -g 1000 mmdvm \
-    && adduser -u 1000 -G mmdvm -s /bin/sh -D mmdvm \
-    && apk add --update --no-cache \
-    cmake \
+RUN apk add --update \
     make \
     git \
     g++ \
-    ca-certificates \
     linux-headers \
-  && rm -rf /var/cache/apk/* \
-  && git clone https://github.com/g4klx/MMDVMHost.git
+    && git clone https://github.com/g4klx/MMDVMHost.git \
+    && cd /MMDVMHost && make \
+    && apk del make git linux-headers \
+    && rm -rf /var/cache/apk/*
 
-RUN adduser mmdvm dialout
-
-WORKDIR /MMDVMHost
-RUN make
-RUN chown -R mmdvm.mmdvm /MMDVMHost
+RUN addgroup -g 1000 mmdvm \
+    && adduser -u 1000 -G mmdvm -s /bin/sh -D mmdvm \
+    && adduser mmdvm dialout \
+    && chown -R mmdvm:mmdvm /MMDVMHost \
+    && mkdir /var/log/mmdvm \
+    && chown -R mmdvm:mmdvm /var/log/mmdvm
 
 VOLUME /MMDVMHost
 WORKDIR /MMDVMHost
