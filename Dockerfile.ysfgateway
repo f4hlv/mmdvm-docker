@@ -1,21 +1,24 @@
 FROM alpine
 
 RUN apk add --update --no-cache \
-    cmake \
     make \
     git \
     g++ \
-    ca-certificates \
-  && rm -rf /var/cache/apk/* \
-  && git clone https://github.com/g4klx/YSFClients.git
+    && git clone https://github.com/g4klx/YSFClients.git \
+    && cd /YSFClients/YSFGateway && make \
+    && apk del make git \
+    && rm -rf /var/cache/apk/*
 
-WORKDIR /YSFClients/YSFGateway
-RUN make
-
-RUN mkdir /var/log/ysfgateway
+RUN addgroup -g 1000 mmdvm \
+    && adduser -u 1000 -G mmdvm -s /bin/sh -D mmdvm \
+    && chown -R mmdvm:mmdvm /YSFClients \
+    && mkdir /var/log/YSFGateway \
+    && chown -R mmdvm:mmdvm /var/log/YSFGateway
 
 VOLUME /YSFClients/YSFGateway
-
 WORKDIR /YSFClients/YSFGateway
+EXPOSE 3200
+EXPOSE 4200
+USER mmdvm
 
 CMD ["/YSFClients/YSFGateway/YSFGateway", "/YSFClients/YSFGateway/YSFGateway.ini"]
