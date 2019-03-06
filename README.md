@@ -1,6 +1,6 @@
 # MMDVM by G4KLX
 
-![logo](https://i1.wp.com/www.gb7dd.co.uk/wp-content/uploads/2016/02/MMDVM-logo.jpg?w=900)
+![logo](https://www.rs-online.com/designspark/rel-assets/dsauto/temp/uploaded/MMDVM.jpg?w=815)
 
 # Install Docker
 ```console
