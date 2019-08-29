@@ -9,13 +9,20 @@ $ sudo sh get-docker.sh
 ```
 
 # Install docker-compose
-* (Debian)
+* (Debian Buster)
+```console
+$ sudo apt install docker-compose
+```
+* (Debian stretch)
 ```console
 $ sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 $ chmod +x /usr/local/bin/docker-compose
 ```
-
-* (Raspberry)
+* (Raspberry Buster)
+```console
+$ sudo apt install docker-compose
+```
+* (Raspberry stretch)
 ```console
 $ sudo apt-get -y install python-setuptools
 $ sudo easy_install pip && sudo pip install docker-compose
@@ -55,7 +62,7 @@ $ docker-compose up -d
 
 # docker-compose
 ```yml
-version: '3'
+version: '3.2'
 services:
 #############################################################################################
   mmdvmhost:
