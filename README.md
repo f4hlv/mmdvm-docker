@@ -75,6 +75,7 @@ services:
 #      - ./config/RSSI.dat:/MMDVMHost/RSSI.dat:ro
 #      - ./config/DMRIds.dat:/MMDVMHost/DMRIds.dat:ro
       - mmdvmhost:/MMDVMHost
+      - log-mmdvm:/var/log/mmdvm
     networks:
       mmdvm:
         ipv4_address: 10.10.1.2      
@@ -91,6 +92,7 @@ services:
     volumes:
       - ./config/YSFGateway.ini:/YSFClients/YSFGateway/YSFGateway.ini:ro
 #      - ./config/YSFHosts.txt:/YSFClients/YSFGateway/YSFHosts.txt:ro
+      - log-YSFGateway:/var/log/YSFGateway
     depends_on:
       - mmdvmhost
     networks:
@@ -121,11 +123,11 @@ services:
     ports:
       - "80:80"
     volumes:
-      - mmdvmhost:/etc/mmdvm:ro
-      - ./config/MMDVM.ini:/etc/mmdvm/MMDVM.ini:ro
-    # - ./config/RSSI.dat:/etc/mmdvm/RSSI.dat:ro
-    # - ./config/DMRIds.dat:/etc/mmdvm/DMRIds.dat:ro
-    # - ./config/YSFHosts.txt:/etc/YSFGateway/YSFHosts.txt:ro
+      - mmdvmhost:/MMDVMHost:ro
+      - ./config:/config:ro
+      - ./config/config.php:/var/www/html/config/config.php
+      - log-mmdvm:/var/log/mmdvm:ro
+      - log-YSFGateway:/var/log/YSFGateway:ro
     pid: host
     restart: always
     networks:
@@ -133,6 +135,9 @@ services:
 #############################################################################################
 volumes:
   mmdvmhost:
+  log-mmdvm:
+  log-YSFGateway:
+  
 networks:
   webgateway:
     external:
