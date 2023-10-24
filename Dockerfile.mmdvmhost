@@ -1,7 +1,7 @@
-FROM alpine
+FROM alpine:3.12
 
 RUN apk add --update \
-    make \
+    make libsamplerate-dev \
     git \
     g++ \
     linux-headers \
